@@ -32,7 +32,7 @@ jobs:
         cd infra_project/
         # запустить написанные разработчиком тесты
         python manage.py test
-build:
+  build:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     needs: tests
@@ -56,7 +56,7 @@ build:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_PASSWORD }}:latest
 
-deploy:
+  deploy:
     runs-on: ubuntu-latest
     needs: build_and_push_to_docker_hub
     steps:
